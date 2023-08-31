@@ -139,6 +139,16 @@ def recursive_xy_cut(boxes: np.ndarray, indices: np.ndarray, res: List[int]):
 
 
 def points_to_bbox(points):
+    """
+    Convert 8 points to bounding box coordinates.
+
+    Args:
+        points: Array of 8 coordinates representing the points.
+
+    Returns:
+        Bounding box in format [left, top, right, bottom]
+    """
+
     assert len(points) == 8
 
     # [x1,y1,x2,y2,x3,y3,x4,y4]
@@ -155,12 +165,35 @@ def points_to_bbox(points):
 
 
 def bbox2points(bbox):
+    """
+    Convert bounding box to 8 points.
+
+    Args:
+        bbox: Bounding box in format [left, top, right, bottom]
+
+    Returns:
+        Array of 8 coordinates representing the points.
+    """
+
     left, top, right, bottom = bbox
     return [left, top, right, top, right, bottom, left, bottom]
 
 
 @requires_dependencies("cv2")
 def vis_polygon(img, points, thickness=2, color=None):
+    """
+    Visualize a polygon on an image.
+
+    Args:
+        img: Image array
+        points: Points representing the polygon
+        thickness: Line thickness
+        color: Line color
+
+    Returns:
+        Modified image array with the polygon drawn.
+    """
+
     import cv2
 
     br2bl_color = color
@@ -209,14 +242,16 @@ def vis_points(
     color=(0, 200, 0),
 ) -> np.ndarray:
     """
+    Visualize points on an image with corresponding text labels.
 
     Args:
-        img:
+        img: Image array
         points: [N, 8]  8: x1,y1,x2,y2,x3,y3,x4,y4
-        texts:
-        color:
+        texts: Text labels corresponding to each point
+        color: Color for the visualization
 
     Returns:
+        Modified image array with points and text drawn.
 
     """
     import cv2
@@ -258,6 +293,17 @@ def vis_points(
 
 
 def vis_polygons_with_index(image, points):
+    """
+    Visualize polygons with index labels.
+
+    Args:
+       image: Image array
+       points: Points representing polygons
+
+    Returns:
+       Modified image array with polygons and index labels drawn.
+    """
+
     texts = [str(i) for i in range(len(points))]
     res_img = vis_points(image.copy(), points, texts)
     return res_img
