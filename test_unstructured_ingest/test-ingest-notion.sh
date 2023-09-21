@@ -27,7 +27,7 @@ PYTHONPATH=. ./unstructured/ingest/main.py \
     --num-processes 2 \
     --recursive \
     --verbose \
-    --max-retries 10
+    --max-time 60
 
 
 "$SCRIPT_DIR"/check-diff-expected-output.sh $OUTPUT_FOLDER_NAME
