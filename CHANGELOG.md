@@ -7,7 +7,7 @@
 * **Azure Cognite Search destination connector** New Azure Cognitive Search destination connector added to ingest CLI.  Users may now use `unstructured-ingest` to write partitioned data from over 20 data sources (so far) to an Azure Cognitive Search index.
 * **Improves salesforce partitioning** Partitions Salesforce data as xlm instead of text for improved detail and flexibility. Partitions htmlbody instead of textbody for Salesforce emails. Importance: Allows all Salesforce fields to be ingested and gives Salesforce emails more detailed partitioning.
 * **Add document level language detection functionality.** Introduces the "auto" default for the languages param, which then detects the languages present in the document using the `langdetect` package. Adds the document languages as ISO 639-3 codes to the element metadata. Implemented only for the partition_text function to start.
-* **Add retry strategy for source connectors** Dynamic retry strategy added with exponential backoff added to notion source connector.
+* **Add retry strategy for source connectors** Dynamic retry strategy added with exponential backoff added to notion source connector. This can be used to alleviate transient network issues and give the connector time to recover without failing on the first failed call.
 
 ### Features
 
